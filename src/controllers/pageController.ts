@@ -1,8 +1,11 @@
 import type { Request, Response } from 'express';
 import { menuObject } from '../helpers/createMenuObject.js';
+import { Pet } from '../models/pet.js';
 
 export const home = (req: Request, res: Response) => {
+  let list = Pet.getAll()
   res.render('pages/page', {
+    list,
     menu: menuObject('all'),
     banner: {
       title: 'Todos os animais',
@@ -11,7 +14,9 @@ export const home = (req: Request, res: Response) => {
   })
 }
 export const dogs = (req: Request, res: Response) => {
+  let list = Pet.getFromType('dog')
   res.render('pages/page', {
+    list,
     menu: menuObject('dog'),
     banner: {
       title: 'Cães',
@@ -21,7 +26,9 @@ export const dogs = (req: Request, res: Response) => {
 
 }
 export const cats = (req: Request, res: Response) => {
+  let list = Pet.getFromType('cat')
   res.render('pages/page', {
+    list,
     menu: menuObject('cat'),
     banner: {
       title: 'Gatos',
@@ -30,7 +37,9 @@ export const cats = (req: Request, res: Response) => {
   })
 }
 export const fishes = (req: Request, res: Response) => {
+  let list = Pet.getFromType('fish')
   res.render('pages/page', {
+    list,
     menu: menuObject('fish'),
     banner: {
       title: 'Peixes',
